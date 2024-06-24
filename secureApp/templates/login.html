@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #141E30, #243B55);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 48px;
+            color: #f67070;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .container {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #d9e4d9;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #555;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #f67070;
+            color: white;
+            padding: 12px 20px;
+            margin: 12px 0 8px 0; /* Adjusted margin for spacing */
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e05858;
+        }
+
+        .new-user {
+            margin-top: 20px;
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .new-user a {
+            color: #d9e4d9;
+            text-decoration: none;
+        }
+
+        .new-user a:hover {
+            text-decoration: underline;
+        }
+
+        .show-password {
+            margin-top: 10px;
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: flex-start; /* Align checkbox to the right */
+            color: #d9e4d9; /* Color for the "Show Password" label */
+        }
+        
+        .show-password label {
+            margin-left: 5px; /* Add spacing between checkbox and label */
+        }
+        
+        /* Media Queries for Responsive Design */
+
+        /* Tablets and larger */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+            }
+        }
+
+        /* Laptops and larger */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        /* Large screens and monitors */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 700px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome To SecureBridge</h1>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username or Email" required aria-label="Username or Email">
+            <input type="password" name="password" id="password" placeholder="Password" required aria-label="Password">
+            <div class="show-password">
+                <input type="checkbox" id="show-password-toggle" onclick="togglePassword()">
+                <label for="show-password-toggle">Show Password</label>
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        <div class="new-user">
+            New? <a href="{% url 'signup' %}">Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var showPasswordField = document.getElementById('show-password-checkbox');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+            showPasswordField.checked = !showPasswordField.checked;
+        }
+    </script>
+</body>
+</html>
