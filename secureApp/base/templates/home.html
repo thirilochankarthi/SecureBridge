@@ -1,9 +1,134 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to bottom, #f2f2f2, #fff); /* Add a subtle gradient background */
+        }
 
-{% block content %}
-home page
-<form method="post" action="{% url 'base:logout' %}">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
-{% endblock content %}
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center; /* Center the nav items horizontally */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center; /* Center the items vertically */
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ccc;
+        }
+
+        #logout-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #logout-btn:hover {
+            background-color: #444;
+        }
+
+        /* Add styles for the new buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #666;
+        }
+
+        /* Add styles for the encrypt and decrypt buttons */
+        .encrypt-button {
+            background-color: #FFC5C5; /* Blush color */
+        }
+
+        .decrypt-button {
+            background-color: #32CD32; /* Lime color */
+        }
+
+        /* Add styles for the images */
+        .image-container {
+            width: 40%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <form method="post" action="{% url 'base:logout' %}">
+            {% csrf_token %}
+            <nav>
+                <ul>
+                    <li><button id="logout-btn">Log Out</button></li>
+                </ul>
+            </nav>
+        </form>
+    </header>
+    <main>
+        <div class="button-container">
+            <div class="image-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/126/126492.png" alt="Encryption Icon" class="image"> <!-- Encryption icon -->
+                <p>Encrypt Your message</p>
+                <button class="button encrypt-button">Click me</button>
+            </div>
+            <div class="image-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/126/126493.png" alt="Decryption Icon" class="image"> <!-- Decryption icon -->
+                <p>Decrypt Your message</p>
+                <button class="button decrypt-button">Click me</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
