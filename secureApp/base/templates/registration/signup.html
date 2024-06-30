@@ -1,5 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
+
+<style>
+  .shadow-wrap {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Adjust max-width as needed */
+    margin: 0 auto; /* Center align the form */
+  }
+
+  .form-wrap {
+    text-align: left; /* Align form content to the left */
+  }
+
+  .form-wrap h3 {
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center; /* Center align the heading */
+  }
+
+  .form-wrap form {
+    max-width: 400px; /* Adjust max-width as needed */
+    margin: 0 auto 20px; /* Center align the form fields with bottom margin for space */
+  }
+
+  .form-wrap label {
+    display: block;
+    margin-bottom: 8px; /* Space between labels */
+  }
+
+  .form-wrap input[type="password"],
+  .form-wrap input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Space between input fields */
+  }
+
+  .form-wrap button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .signup-link {
+    display: block;
+    text-align: center; /* Center align the signup link */
+    margin-top: 20px; /* Increase the top margin to move it down */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px; /* Increase font size */
+  }
+
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
 <div class="shadow-wrap">
  <div class="form-wrap">
   <h3>Signup </h3>

@@ -1,6 +1,89 @@
 {% extends "base.html" %}
 {% block content %}
+
+<head>
+  <!-- Import the chosen font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f7fa;
+    }
+
+    .shadow-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 50px; /* Add padding to position it a bit down from the very top */
+      background-color: #eef1f8;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif; /* Use the imported font */
+      font-size: 3em; /* Adjust the font size as needed */
+      color: #2c3e50; /* Dark color for a professional look */
+      margin-bottom: 20px; /* Space between the title and the form */
+      letter-spacing: 2px; /* Add some letter spacing for style */
+    }
+
+    .form-wrap {
+      width: 350px; /* Increased width of the login box */
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .form-wrap h3 {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+    }
+
+    .form-wrap form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-wrap label {
+      margin-bottom: 5px;
+    }
+
+    .form-wrap input {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-wrap button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      border-radius: 5px;
+    }
+
+    .signup-link {
+      margin-top: 10px;
+      color: #3498db;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      display: block;
+    }
+  </style>
+</head>
+
 <div class="shadow-wrap">
+  <h1>Welcome To SecureBridge</h1>
  <div class="form-wrap">
   <h3>Login </h3>
 <form method="POST">
