@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 
 @login_required
@@ -17,4 +18,14 @@ def authView(request):
  else:
   form = UserCreationForm()
  return render(request, "registration/signup.html", {"form": form}) 
+
+@login_required
+def myencrypt(request):
+ return render(request, 'encryption.html')
+
+@login_required
+def mydecrypt(request):
+ return render(request, 'decryption.html') 
+
+
 

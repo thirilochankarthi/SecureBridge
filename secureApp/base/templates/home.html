@@ -120,15 +120,23 @@
             <div class="image-container">
                 <img src="https://cdn-icons-png.flaticon.com/512/126/126492.png" alt="Encryption Icon" class="image"> <!-- Encryption icon -->
                 <p>Encrypt Your message</p>
-                <button class="button encrypt-button">Click me</button>
+                <form method="post" action='myencrypt/'>
+                    {% csrf_token %}
+                    <button class="button encrypt-button" type="submit">Click me</button>
+                </form>
             </div>
             <div class="image-container">
                 <img src="https://cdn-icons-png.flaticon.com/512/126/126493.png" alt="Decryption Icon" class="image"> <!-- Decryption icon -->
                 <p>Decrypt Your message</p>
-                <button class="button decrypt-button">Click me</button>
+                <form method="post" action='mydecrypt/'>
+                    {% csrf_token %}
+                    <button class="button decrypt-button" type="submit">Click me</button>
+                </form>
             </div>
         </div>
     </main>
     <script src="script.js"></script>
 </body>
 </html>
+
+
