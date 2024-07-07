@@ -10,19 +10,23 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: linear-gradient(to bottom, #f2f2f2, #fff); /* Add a subtle gradient background */
+            background-image: linear-gradient(to bottom, #f2f2f2, #fff);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 1em;
+            padding: 1em 0;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         nav {
             display: flex;
-            justify-content: center; /* Center the nav items horizontally */
+            justify-content: center;
         }
 
         nav ul {
@@ -30,7 +34,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            align-items: center; /* Center the items vertically */
+            align-items: center;
         }
 
         nav li {
@@ -40,6 +44,7 @@
         nav a {
             color: #fff;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         nav a:hover {
@@ -53,54 +58,112 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         #logout-btn:hover {
             background-color: #444;
         }
 
-        /* Add styles for the new buttons */
-        .button-container {
+        main {
+            flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            height: 100vh;
             padding: 20px;
         }
 
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex: 1;
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
         .button {
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 16px;
             cursor: pointer;
             border: none;
             border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .button:hover {
-            background-color: #666;
+            transform: translateY(-2px);
         }
 
-        /* Add styles for the encrypt and decrypt buttons */
         .encrypt-button {
-            background-color: #FFC5C5; /* Blush color */
+            background-color: #4CAF50; /* Green */
+            color: white;
         }
 
         .decrypt-button {
-            background-color: #32CD32; /* Lime color */
+            background-color: #FF5733; /* Orange */
+            color: white;
         }
 
-        /* Add styles for the images */
+        .center-button-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .center-button {
+            background-color: #555;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .center-button:hover {
+            background-color: #666;
+            transform: translateY(-2px);
+        }
+
         .image-container {
-            width: 40%;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Added margin for spacing */
         }
 
         .image {
-            width: 50px;
-            height: 50px;
-            margin: 10px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px; /* Centered and added bottom margin */
             border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .image:hover {
+            transform: scale(1.1);
+        }
+
+        .image-encrypt {
+            content: url('https://cdn-icons-png.flaticon.com/512/1806/1806641.png'); /* Encryption icon */
+        }
+
+        .image-decrypt {
+            content: url('https://cdn-icons-png.flaticon.com/512/1806/1806643.png'); /* Decryption icon */
+        }
+
+        .message-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .message-description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -118,25 +181,31 @@
     <main>
         <div class="button-container">
             <div class="image-container">
-                <img src="https://cdn-icons-png.flaticon.com/512/126/126492.png" alt="Encryption Icon" class="image"> <!-- Encryption icon -->
-                <p>Encrypt Your message</p>
-                <form method="post" action='encrypt/'>
+                <img src="https://cdn-icons-png.flaticon.com/512/1806/1806641.png" alt="Encryption Icon" class="image image-encrypt">
+                <div class="message-title">Encrypt Your message</div>
+                <div class="message-description">Secure your message with encryption</div>
+                <form method="post" action="encrypt/">
                     {% csrf_token %}
-                    <button class="button encrypt-button" type="submit">Click me</button>
+                    <button class="button encrypt-button" type="submit">Encrypt</button>
                 </form>
             </div>
             <div class="image-container">
-                <img src="https://cdn-icons-png.flaticon.com/512/126/126493.png" alt="Decryption Icon" class="image"> <!-- Decryption icon -->
-                <p>Decrypt Your message</p>
-                <form method="post" action='decrypt/'>
+                <img src="https://cdn-icons-png.flaticon.com/512/1806/1806643.png" alt="Decryption Icon" class="image image-decrypt">
+                <div class="message-title">Decrypt Your message</div>
+                <div class="message-description">Decrypt previously encrypted messages</div>
+                <form method="post" action="decrypt/">
                     {% csrf_token %}
-                    <button class="button decrypt-button" type="submit">Click me</button>
+                    <button class="button decrypt-button" type="submit">Decrypt</button>
                 </form>
             </div>
+        </div>
+        <div class="center-button-container">
+            <form method="post" action="filecrypt/">
+                {% csrf_token %}
+                <button class="center-button">File Encryption and Decryption</button>
+            </form>
         </div>
     </main>
     <script src="script.js"></script>
 </body>
 </html>
-
-

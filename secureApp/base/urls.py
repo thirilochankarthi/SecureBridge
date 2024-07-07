@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import authView, home
 from django.contrib.auth import views as auth_views
 from . import views
+from .views import file_crypt_view
 
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
  path("logout/", auth_views.LogoutView.as_view(next_page="base:home"), name="logout"),
  path('encrypt/', views.encrypt_message, name='encrypt_message'),
  path('decrypt/', views.decrypt_message, name='decrypt_message'),
+ path('filecrypt/', file_crypt_view, name='file_crypt')
 ]

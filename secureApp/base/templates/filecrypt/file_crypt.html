@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Encryption and Decryption</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .file-input-wrapper {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+        .file-input-wrapper:hover {
+            border-color: #007bff;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-input-label {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background-color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .file-input-label:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        input[type="password"] {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-button">Home</a>
+    <div class="container">
+        <h1>File Encryption and Decryption</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Encrypt a File</h2>
+            <div class="file-input-wrapper">
+                <label for="encrypt-file" class="file-input-label">Choose a file</label>
+                <input type="file" id="encrypt-file" name="encrypt-file">
+            </div>
+            {{ encrypt_form.password.label_tag }}<br>
+            {{ encrypt_form.password }}<br>
+            <button type="submit" name="encrypt-submit">Encrypt</button>
+        </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Decrypt a File</h2>
+            <div class="file-input-wrapper">
+                <label for="decrypt-file" class="file-input-label">Choose a file</label>
+                <input type="file" id="decrypt-file" name="decrypt-file">
+            </div>
+            {{ decrypt_form.password.label_tag }}<br>
+            {{ decrypt_form.password }}<br>
+            <button type="submit" name="decrypt-submit">Decrypt</button>
+        </form>
+    </div>
+    <script>
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const label = this.previousElementSibling;
+                if (this.files.length > 0) {
+                    label.textContent = this.files[0].name;
+                } else {
+                    label.textContent = 'Choose a file';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
